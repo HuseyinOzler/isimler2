@@ -1,0 +1,21 @@
+ <View style={styles.container}>
+    <TouchableOpacity>
+      <View>
+        <View style={styles.isim}>
+          <Text style={{fontSize:23}}> {isim} </Text>
+        </View>
+        <View>
+          <View>
+            
+              <View style={styles.yvr}>
+                <Text>0</Text>
+              </View>
+           
+          </View>
+        </View>
+      </View>
+          
+       
+        </TouchableOpacity>
+       
+      </View>
