@@ -1,13 +1,22 @@
 
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,TouchableOpacity} from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Alert
+} from 'react-native';
 import {
   AdMobBanner,
   AdMobInterstitial,
   PublisherBanner,
   AdMobRewarded,
 } from 'react-native-admob'
+
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 
 export default class Sayac extends Component{
@@ -26,9 +35,23 @@ export default class Sayac extends Component{
   constructor(props){
     super(props)
     this.state = {
-      count:0
+      count:0,
+      showAlert: false
     }
   }
+
+
+  showAlert = () => {
+    this.setState({
+      showAlert: true
+    });
+  };
+
+  hideAlert = () => {
+    this.setState({
+      showAlert: false
+    });
+  };
   
 
   onPress = () => {
@@ -44,14 +67,28 @@ azalt = () => {
   })
 }
 
-sifirla = () => {
+sifirlama= () => {
   this.setState({
-    count: 0
+    count:0
   })
 }
 
 
+sifirla = () => {
+ Alert.alert(
+  'Sayac Sıfırlansın mı?',
+  'Vazgeç',
+  [
+    {text: 'Sıfırla', onPress: () => this.state.count=0},
+    {text: 'Vazgeç', onPress: () => this.sifir},
+  ],
+  { cancelable: false }
+)
+}
+
+
   render() {
+    const {showAlert} = this.state;
     const { navigation } = this.props;
     const isim = navigation.getParam('isim');
     return (
@@ -60,13 +97,17 @@ sifirla = () => {
 
           <View style={{flexDirection:'row',justifyContent:'space-around',backgroundColor:'#fff'}} >
 
-            <TouchableOpacity
-            onPress={this.sifirla}
-            >
-              <Text style={{fontSize:20}} >Sıfırla</Text>
-            </TouchableOpacity>
+         
             
+            <TouchableOpacity onPress={() => {
+          this.showAlert();
+        }}>
+          
+            <Text style={{fontSize:20}} >Sıfırla</Text>
+          
+        </TouchableOpacity>
 
+        
             
 
             <TouchableOpacity
@@ -85,9 +126,36 @@ sifirla = () => {
               onPress={this.onPress}>
               <Text style={{fontSize:20,marginBottom:30}} > {isim} </Text>
               <Text style={[styles.countText]}>
-                { this.state.count !== 100000 ? this.state.count: null}
+
+              
+                { 
+                  
+                  this.state.count <= 0 ? 0:this.state.count
+                  
+                }
               </Text>
+              
               </TouchableOpacity>
+                 <AwesomeAlert
+          show={showAlert}
+          showProgress={false}
+          title="Tesbih Sıfırlama"
+          message = " Tesbihi Sıfırlansın mı !!!"
+          closeOnTouchOutside={true}
+          closeOnHardwareBackPress={false}
+          showCancelButton={true}
+          showConfirmButton={true}
+          cancelText="Hayır"
+          confirmText="Evet"
+          confirmButtonColor="#DD6B55"
+          onCancelPressed={() => {
+            this.hideAlert();
+          }}
+          onConfirmPressed={() => {
+            this.hideAlert();
+            this.sifirlama();
+          }}
+        />
 
            
               <AdMobBanner

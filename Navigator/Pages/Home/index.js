@@ -25,14 +25,10 @@ export default class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-            <Postitem/>
-                          <AdMobBanner
-  adSize="fullBanner"
-  adUnitID="ca-app-pub-3940256099942544/6300978111"
-  testDevices={[AdMobBanner.simulatorId]}
-  onAdFailedToLoad={error => console.error(error)}
-/>
+            <Postitem/>          
       </View>
+      
+  
     );
   }
 }
@@ -40,7 +36,6 @@ export default class Home extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  
     backgroundColor: '#F5FCFF',
   },
 

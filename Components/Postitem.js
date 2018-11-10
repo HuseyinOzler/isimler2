@@ -9,6 +9,13 @@ import {
 } from 'react-native';
 
 import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded,
+} from 'react-native-admob'
+
+import {
   robotoWeights
 } from 'react-native-typography';
 
@@ -97,9 +104,12 @@ export class HomeScreen extends Component {
                         <Text style={robotoWeights.ultraLight,{color:'#352f42'}} >{item.titleNumber} </Text>
                         <Text style={robotoWeights.ultraLight,{color:'#352f42'}} >{item.titleOne} </Text>
                         <Text style={robotoWeights.bold,{color:'#352f42'}} >{item.titleTwo} </Text>
+                        
+                        
                   </View>
 
                 </TouchableOpacity>
+                
 
 
 
